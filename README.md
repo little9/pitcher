@@ -1,5 +1,7 @@
 # :baseball: pitcher :baseball:
 
+[![Gem Version](https://badge.fury.io/rb/pitcher.svg)](https://badge.fury.io/rb/pitcher)
+
 This gem is a library to interact with the CONTENTdm Catcher web service. You can use pitcher to do bulk updating
 of metadata by using a CSV.
 
