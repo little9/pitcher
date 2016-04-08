@@ -9,7 +9,7 @@ of metadata by using a CSV.
 
 ## Usage
 
-    pitcher -c ~/pitcher/items.csv -s ~/pitcher/settings.yml
+    pitcher -csv ~/pitcher/items.csv -settings ~/pitcher/settings.yml
 
 On the command line you provide a csv file formatted like this:
 
