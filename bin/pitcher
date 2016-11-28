@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'pitcher'
+require 'pitcher/settings'
+
+pitcher = Pitcher::Pitcher.new
+
+pitcheropts = Pitcher::PitcherOpts.new
+options = pitcheropts::parse(ARGV)
+
+
+if (!options[:settings] || !options[:csv])
+  puts 'The --settings and --csv paramters are required'
+  exit
+end
+
+if (options[:settings])
+  settings = Settings.new(options[:settings])
+  p settings
+else
+  exit
+end
+
+if (options[:csv]) 
+  csv = pitcher.load_csv(options[:csv])
+  pitcher.create_message(csv,settings)
+else
+  exit
+end
