@@ -1,7 +1,7 @@
 require 'pitcher/version'
 require 'pitcher/options'
 require 'savon'
-require 'CSV'
+require 'csv'
 
 module Pitcher
   class Pitcher
