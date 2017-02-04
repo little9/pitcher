@@ -48,7 +48,7 @@ module Pitcher
     def send_message(message)
       # Initialize the SOAP client with the catcher service url
       client = Savon.client(
-          wsdl: 'https://worldcat.org/webservices/contentdm/catcher/6.0/CatcherService.wsdl',
+          wsdl: 'https://worldcat.org/webservices/contentdm/catcher?wsdl',
           pretty_print_xml: true,
           log: true
       )
