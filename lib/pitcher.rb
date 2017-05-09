@@ -54,6 +54,7 @@ module Pitcher
       )
       # Create the hash that will be sent as a message to the service with the creds and data above
       response = client.call(:process_conten_tdm, message: message)
+      print response.to_hash
     end
   end
 end
