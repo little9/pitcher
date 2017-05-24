@@ -61,7 +61,8 @@ module Pitcher
       # parse request body xml, extract username
       doc = Nokogiri::XML(request.body)
       user = doc.at('username').text
-      recordid = doc.at_xpath('metadata/metadataList/metadata/value').text
+      recordids = doc.xpath('//value')
+      recordid = recordids[0].to_s
       # Write response to a file
       File.open('response-' + user + '.txt', 'a') { |file| file.write("\r" + recordid + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
     end
