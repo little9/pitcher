@@ -54,7 +54,9 @@ module Pitcher
       )
       # Create the hash that will be sent as a message to the service with the creds and data above
       response = client.call(:process_conten_tdm, message: message)
-      File.open('response.txt', 'a') { |file| file.write("\r" + message[:metadata] + response.body.to_hash[:process_conten_tdm_response][:return] ) }
+      # Write response to a file
+      user = message[:username]
+      File.open('response.txt', 'a') { |file| file.write("\r" + message + response.body.to_hash[:process_conten_tdm_response][:return] ) }
     end
   end
 end
