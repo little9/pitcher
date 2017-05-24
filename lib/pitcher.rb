@@ -57,8 +57,6 @@ module Pitcher
       path = File.join Rails.root, 'public', 'uploads'
       FileUtils.mkdir_p(path) unless File.exist?(path)
       File.open(File.join(path, 'response.txt'), 'w') { |file| file.write(response.body.to_hash) }
-      
-end
     end
   end
 end
