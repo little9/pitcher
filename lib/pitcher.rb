@@ -2,6 +2,7 @@ require 'pitcher/version'
 require 'pitcher/options'
 require 'savon'
 require 'csv'
+require 'nokogiri'
 
 module Pitcher
   class Pitcher
@@ -54,9 +55,14 @@ module Pitcher
       )
       # Create the hash that will be sent as a message to the service with the creds and data above
       response = client.call(:process_conten_tdm, message: message)
-      # Write response to a file
+      # Get request body
       request = client.build_request(:process_conten_tdm, message: message)
-      File.open('response.txt', 'a') { |file| file.write("\r" + request.body + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
+      XML = request.body
+      # parse request body xml, extract username and metadata
+      doc = Nokogiri::XML(XML)
+      user = doc.at('username').text
+      # Write response to a file
+      File.open('response-' + user + '.txt', 'a') { |file| file.write("\r" + request.body + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
     end
   end
 end
