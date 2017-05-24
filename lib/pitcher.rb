@@ -55,11 +55,11 @@ module Pitcher
       )
       # Create the hash that will be sent as a message to the service with the creds and data above
       response = client.call(:process_conten_tdm, message: message)
-      # Get request body
+      # build request without sending
       request = client.build_request(:process_conten_tdm, message: message)
-      XML = request.body
-      # parse request body xml, extract username and metadata
-      doc = Nokogiri::XML(XML)
+      
+      # parse request body xml, extract username
+      doc = Nokogiri::XML(request.body)
       user = doc.at('username').text
       # Write response to a file
       File.open('response-' + user + '.txt', 'a') { |file| file.write("\r" + request.body + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
