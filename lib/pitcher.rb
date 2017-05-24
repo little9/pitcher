@@ -54,9 +54,7 @@ module Pitcher
       )
       # Create the hash that will be sent as a message to the service with the creds and data above
       response = client.call(:process_conten_tdm, message: message)
-      path = File.join Rails.root, 'public', 'uploads'
-      FileUtils.mkdir_p(path) unless File.exist?(path)
-      File.open(File.join(path, 'response.txt'), 'w') { |file| file.write(response.body.to_hash) }
+      File.open('response.txt', 'w') { |file| file.write(response.body.to_hash) }
     end
   end
 end
