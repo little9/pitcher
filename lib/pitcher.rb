@@ -64,7 +64,7 @@ module Pitcher
       recordids = doc.xpath('//value')
       recordid = recordids[0].text
       # Write response to a file
-      File.open('response-' + user + '.txt', 'a') { |file| file.write("\r\r" + "CONTENTdm Record Number:" + recordid + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
+      File.open('./logs/response-' + user + '.txt', 'a') { |file| file.write("\r\r" + "CONTENTdm Record Number:" + recordid + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
     end
   end
 end
