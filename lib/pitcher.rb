@@ -58,13 +58,13 @@ module Pitcher
       # build request without sending
       request = client.build_request(:process_conten_tdm, message: message)
       
-      # parse request body xml, extract username
+      # parse request body xml, extract username and contendm record number
       doc = Nokogiri::XML(request.body)
       user = doc.at('username').text
       recordids = doc.xpath('//value')
-      recordid = recordids[0].to_s
+      recordid = recordids[0].text
       # Write response to a file
-      File.open('response-' + user + '.txt', 'a') { |file| file.write("\r" + recordid + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
+      File.open('response-' + user + '.txt', 'a') { |file| file.write("\r\r" + "CONTENTdm Record Number:" + recordid + "\r" + response.body.to_hash[:process_conten_tdm_response][:return] ) }
     end
   end
 end
